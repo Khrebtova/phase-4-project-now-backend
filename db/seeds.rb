@@ -21,10 +21,10 @@ wayne = Client.create(name: 'Wayne Enterprises');
 acme = Client.create(name: 'Acme Corporation');
 initech = Client.create(name: 'Initech');
 
-project1 = Project.create(name: 'New Factory', description: '', completed: false, client: chocolate, employee: marshal);
-project2 = Project.create(name: 'Office building', description: '', completed: false, client: globex, employee: lily);
-project3 = Project.create(name: 'Military base', description: '', completed: false, client: stark, employee: barney);
-project4 = Project.create(name: 'Bank building', description: '', completed: false, client: wayne, employee: ted);
-project5 = Project.create(name: 'Convention Center', description: '', completed: false, client: acme, employee: robin);
+project1 = Project.create(name: 'New Factory', completed: false, client: chocolate, employee: marshal);
+project2 = Project.create(name: 'Office building', completed: false, client: globex, employee: lily);
+project3 = Project.create(name: 'Military base', completed: false, client: stark, employee: barney);
+project4 = Project.create(name: 'Bank building', completed: false, client: wayne, employee: ted);
+project5 = Project.create(name: 'Convention Center', completed: false, client: acme, employee: robin);
 
 puts "🌱 Done seeding!"
