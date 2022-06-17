@@ -3,9 +3,9 @@ class UsersController < ApplicationController
   
   # GET /me
   def show
-    @user = User.find_ny(id: sessions[:user_id])
-    if @user
-      render json: @user, status: :ok
+    user = User.find_by(id: session[:user_id])
+    if user
+      render json: user, status: :ok
     else
       render json: { errors: ['Unauthorized'] }, status: :unauthorized
     end
@@ -13,13 +13,12 @@ class UsersController < ApplicationController
   
   # POST /signup
   def create
-    @user = User.create(user_params)
-    
-    if @user.valid?
-      render json: @user, status: :created
-      sessions[:user_id] = @user.id
+    user = User.create(user_params)    
+    if user.valid?
+      render json: user, status: :created
+      session[:user_id] = user.id
     else
-      render json: @user.errors.full_massages, status: :unprocessable_entity
+      render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
@@ -52,6 +51,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:username, :password_digest, :first_name, :last_name, :role)
+      params.permit(:username, :password, :password_confirmation, :first_name, :last_name, :role)
     end
 end
